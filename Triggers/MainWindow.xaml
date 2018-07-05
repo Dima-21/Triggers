@@ -7,6 +7,90 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <TabControl Background="Black">
+            <TabItem Header="Триггеры свойств">
+                <Grid>
+                    <ListBox Width="300" Margin="15" Background="Black">
+                        <ListBoxItem>ListItem-1</ListBoxItem>
+                        <ListBoxItem>ListItem-2</ListBoxItem>
+                        <ListBoxItem>ListItem-3</ListBoxItem>
+                        <ListBoxItem>ListItem-4</ListBoxItem>
+                        <ListBoxItem>ListItem-5</ListBoxItem>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Триггеры событий">
+                <Grid>
+                    <StackPanel VerticalAlignment="Center">
+                        <Button Content="Button-1"/>
+                        <Button Content="Button-2"/>
+                        <Button Content="Button-3"/>
+                        <Button Content="Button-4"/>
+                        <Button Content="Button-5"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Триггеры данных">
+                <StackPanel VerticalAlignment="Center">
+                    <CheckBox x:Name="check1" Content="Дезактивировать кнопку"
+                              Foreground="Lime" FontSize="18" Width="250"/>
+                    <Button x:Name="butt1" Content="Action1" Click="butt1_Click"
+                            Style="{StaticResource special}"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Анимация-1">
+                <Canvas Background="Black">
+                    <Path Stroke="red" Data="{StaticResource geometryPath}" Canvas.Top="10" Canvas.Left="10" />
+                    <Ellipse Width="15" Height="15" Canvas.Top="177" Canvas.Left="120">
+                        <Ellipse.Fill>
+                            <RadialGradientBrush RadiusX="1" RadiusY="1" GradientOrigin="0.3, 0.3">
+                                <GradientStop Color="White" Offset="0" />
+                                <GradientStop Color="Black" Offset="1" />
+                            </RadialGradientBrush>
+                        </Ellipse.Fill>
+                        <Ellipse.Triggers>
+                            <EventTrigger RoutedEvent="Window.Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimationUsingPath Storyboard.TargetProperty="(Canvas.Top)"
+                                       Duration="0:0:2" RepeatBehavior="Forever"
+                                       PathGeometry="{StaticResource geometryPath}" Source="Y" >
+                                        </DoubleAnimationUsingPath>
+                                        <DoubleAnimationUsingPath Storyboard.TargetProperty="(Canvas.Left)"
+                                       Duration="0:0:2" RepeatBehavior="Forever"
+                                       PathGeometry="{StaticResource geometryPath}" Source="X" >
+                                        </DoubleAnimationUsingPath>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Ellipse.Triggers>
+                        
+                    </Ellipse>
+                </Canvas>
+            </TabItem>
+            <TabItem Header="Анимация-2">
+                <Button Width="200" Height="40" Content="Кнопка">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                        To="150"
+                                        Duration="0:0:5">
+
+                                            <DoubleAnimation.EasingFunction>
+                                                <ElasticEase EasingMode="EaseOut" Oscillations="5" Springiness="4" />
+                                            </DoubleAnimation.EasingFunction>
+
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

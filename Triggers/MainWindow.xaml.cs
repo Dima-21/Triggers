@@ -24,5 +24,10 @@ namespace Triggers
         {
             InitializeComponent();
         }
+
+        private void butt1_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
